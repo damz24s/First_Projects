@@ -32,7 +32,7 @@ class social_network:
       xtra_node = str(input("\nAdd another user? 'yes' or 'no':"))
       if xtra_node == 'yes':
         self.add_user()         #if extra node to be added, recursively call function
-                                # 
+                                 
       elif xtra_node == 'no':   #else end function
         return
       
@@ -43,14 +43,14 @@ class social_network:
   
   def add_connection(self):
     print("Current users in the system:{0}".format(self.adj_list.keys())) 
-    name1 = str(input("\nEnter first user to connect or type 'exit' to leave:"))
+    name1 = str(input("\nEnter first user you want to connect or type 'exit' to leave:"))
     if name1 == 'exit':
       return
     #prints out all keys in adjaceny list
     #if user enters 'exit', end function
 
     if name1 in self.adj_list:
-      name2 = str(input("\nEnter second user to connect or type 'exit' to leave:"))
+      name2 = str(input("\nEnter second user you want to connect or type 'exit' to leave:"))
       if name2 == 'exit':
         return
       #if user enters 'exit', end function
@@ -137,6 +137,8 @@ class social_network:
     while True:
       print("\n\n\n          |   NETWORK VIEWING PAGE   |")
       print("            ~~~Choose an option 1-6~~~\n")
+      print("-On this page you will be able to view the network you've created from the entire network (option 1) to an individual 'users' connections (option 5)")
+      print("-(Option 4) allows you to view the quickest path between two 'nodes' of your choice to another\n")
       print("1) View entire network")
       print("2) View all users")
       print("3) View all connections")

@@ -26,7 +26,7 @@ class vnetwork:
     G = self.snetwork_instance.G
     if adj_list:
       print("All users in the network:{0}".format(list(G.nodes)))
-      choice = str(input("Back to viewing page? 'yes' or 'no':"))
+      choice = str(input("\nBack to viewing page? 'yes' or 'no':"))
       if choice == 'yes':
         return
       
@@ -42,7 +42,7 @@ class vnetwork:
     G = self.snetwork_instance.G
     if adj_list:
       print("All connections in the network:{0}".format(list(G.edges)))
-      choice = str(input("Back to viewing page? 'yes' or 'no':"))
+      choice = str(input("\nBack to viewing page? 'yes' or 'no':"))
       if choice == 'yes':
         return
       
@@ -63,7 +63,7 @@ class vnetwork:
       user2 = str(input("Enter second user:"))
       if user2 in adj_list:
 
-        path = nx.shortest_path(G,user1 , user2, weight="weight")
+        path = nx.shortest_path(G,user1 , user2)
         print(path)
         # Create a list of edges in the shortest path
         path_edges = list(zip(path, path[1:]))
@@ -87,18 +87,24 @@ class vnetwork:
       self.shortest_path()
 
   def user_network(self):
-    adj_list = self.snetwork_instance.adj_list
-    G = self.snetwork_instance.G
+   adj_list = self.snetwork_instance.adj_list
+   G = self.snetwork_instance.G
 
-    user = str(input("Enter user here to see their conections:"))
-    if user in adj_list:
-      nx.all_neighbors(G, user)
-      nx.draw(G, with_labels = True, node_color = 'yellow')
-      plt.show()
+   user = str(input("Enter user here to see their connections:"))
 
-    else:
-      print("{0}, does not exist" .format(user))
-      self.user_network()
+   if user in adj_list:
+    # Get all neighbors (connections) of the user
+    neighbors = list(nx.all_neighbors(G, user))
+    
+    # Create a subgraph containing the user and their connections
+    subgraph = G.subgraph([user] + neighbors)
+    
+    # Draw the subgraph
+    nx.draw(subgraph, with_labels=True, node_color='yellow', edge_color='blue', node_size=1500, font_size=16)
+    plt.show()
 
+   else:
+    print("{0} does not exist".format(user))
+    self.user_network()
 
 
