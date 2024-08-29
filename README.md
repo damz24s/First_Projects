@@ -1,4 +1,4 @@
-***Welcome to my first project, a 'Social Network Builder'***
+***Welcome to my first project, a 'Social Network Visualisation Tool'***
 -
 	*What is it about?*
 
